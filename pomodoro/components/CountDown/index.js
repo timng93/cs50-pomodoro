@@ -1,3 +1,3 @@
-import CountDown from "./Countdown";
+import CountDown from "./CountDown";
 
 export default CountDown;
