@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {Button, Text} from "react-native";
-import PropTypes from "prop-types";
 import styles from "./styles";
 
 class TimerToggle extends Component {
@@ -10,10 +9,5 @@ class TimerToggle extends Component {
     return <Text>TimerToggle</Text>;
   }
 }
-
-TimerToggle.PropTypes = {
-  onToggle: PropTypes.func.isRequired,
-  isRunning: PropTypes.bool.isRequired
-};
 
 export default TimerToggle;

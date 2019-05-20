@@ -1,9 +1,10 @@
 import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Button, Text, View} from "react-native";
 import TimeInput from "./components/TimeInput";
 import CountDown from "./components/CountDown";
 import TimerToggle from "./components/TimerToggle";
-
+import Timer from "./utils";
+import vibrate from "./utils";
 const DEFAULT_WORK_MINS = 25;
 
 const minToSec = mins => mins * 60;
