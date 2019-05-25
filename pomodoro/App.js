@@ -1,22 +1,26 @@
-import React from "react";
-import {StyleSheet, Button, Text, View} from "react-native";
-import TimeInput from "./components/TimeInput";
+import React, {Component} from "react";
+import {Button, StyleSheet, Text, View} from "react-native";
 import CountDown from "./components/CountDown";
+import TimeInput from "./components/TimeInput";
 import TimerToggle from "./components/TimerToggle";
 import {Timer, vibrate} from "./utils";
 
 const DEFAULT_WORK_MINS = 25;
 const DEFAULT_BREAK_MINS = 5;
-const minToSec = mins => mins * 60;
-const nextTimer = {work: "break", break: "work"};
 
-export default class App extends React.Component {
+const minsConversion = mins => mins * 60;
+const switchTimer = {
+  work: "break",
+  break: "work"
+};
+
+class App extends Component {
   state = {
-    // in seconds
-    workTime: minToSec(DEFAULT_WORK_MINS),
-    breakTime: minToSec(DEFAULT_BREAK_MINS),
-    // in ms
-    timeRemaining: minToSec(DEFAULT_WORK_MINS) * 1000,
+    //seconds
+    workTime: minsConversion(DEFAULT_WORK_MINS),
+    breakTime: minsConversion(DEFAULT_BREAK_MINS),
+    //ms
+    timeRemaining: minsConversion(DEFAULT_WORK_MINS) * 1000,
     isRunning: false,
     activeTimer: "work"
   };
@@ -25,7 +29,7 @@ export default class App extends React.Component {
     this.timer = new Timer(
       this.state.timeRemaining,
       this.updateTimeRemaining,
-      this.handleTimerEnd
+      this.handleEnd
     );
     this.setState({isRunning: this.timer.isRunning});
   }
@@ -41,7 +45,7 @@ export default class App extends React.Component {
       this.timer = new Timer(
         timeRemaining,
         this.updateTimeRemaining,
-        this.handleTimerEnd
+        this.handleEnd
       );
       if (!shouldStartTimer) this.timer.stop();
       this.setState({
@@ -61,7 +65,6 @@ export default class App extends React.Component {
       !shouldStopTimer
     );
   };
-
   updateTimeRemaining = timeRemaining => {
     this.setState({timeRemaining});
   };
@@ -74,10 +77,10 @@ export default class App extends React.Component {
     this.setState({isRunning: this.timer.isRunning});
   };
 
-  handleTimerEnd = () => {
+  handleEnd = () => {
     vibrate();
     this.setState(
-      prevState => ({activeTimer: nextTimer[prevState.activeTimer]}),
+      prevState => ({activeTimer: switchTimer[prevState.activeTimer]}),
       this.resetTimer
     );
   };
@@ -118,8 +121,21 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 150,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: "stretch"
+  },
+  center: {
+    alignSelf: "center"
+  },
+  buttonGroup: {
+    flexDirection: "row"
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 48,
+    textTransform: "capitalize"
   }
 });
+
+export default App;

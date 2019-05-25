@@ -12,7 +12,7 @@ export default class Timer {
   }
 
   get isRunning() {
-    return !!this.endTime;
+    return !this.endTime;
   }
 
   clearTick = () => {
@@ -23,11 +23,10 @@ export default class Timer {
   tick = () => {
     if (this.endTime < Date.now()) {
       this.onTick(0);
-      this.onEnd();
+      this.onEnd;
     } else {
       this.onTick(this.timeRemaining);
-
-      // account for any delays or time drift
+      //account for any delays or time drift
       const nextTick = this.timeRemaining % 1000;
 
       this.timeout = setTimeout(this.tick, nextTick);
@@ -35,8 +34,7 @@ export default class Timer {
   };
 
   stop = () => {
-    if (!this.isRunning) return;
-    this.clearTick();
+    if (!this.isRunning) return this.clearTick();
     this.duration = this.timeRemaining;
     this.endTime = null;
   };

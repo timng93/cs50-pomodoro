@@ -5,8 +5,8 @@ import React, {Component} from "react";
 
 export default class CountDown extends Component {
   render() {
-    const {timeRemain} = this.props;
-    const totalSecs = Math.round(timeRemain / 1000);
+    const {timeRemaining} = this.props;
+    const totalSecs = Math.round(timeRemaining / 1000);
     const mins = Math.floor(totalSecs / 60);
     const secs = totalSecs % 60;
     const paddedZero = secs < 10 ? "0" : "";
