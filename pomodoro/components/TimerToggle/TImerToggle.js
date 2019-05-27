@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Button, Text} from "react-native";
+import React from "react";
+import {Button} from "react-native";
 import PropTypes from "prop-types";
 
 const TimerToggle = props => {
