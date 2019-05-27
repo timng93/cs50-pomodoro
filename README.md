@@ -6,6 +6,7 @@
 
 # Installations
 
+- git clone
 - cd pomodoro
 - yarn install
 - yarn start
