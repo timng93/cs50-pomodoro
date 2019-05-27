@@ -12,7 +12,7 @@ export default class Timer {
   }
 
   get isRunning() {
-    return !this.endTime;
+    return !!this.endTime;
   }
 
   clearTick = () => {
